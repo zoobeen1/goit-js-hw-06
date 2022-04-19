@@ -1,23 +1,37 @@
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-/* Напиши скрипт создания и очистки коллекции элементов. Пользователь вводит количество элементов в input и нажимает кнопку Создать, после чего рендерится коллекция. При нажатии на кнопку Очистить, коллекция элементов очищается.
-
-<div id="controls">
-  <input type="number" min="1" max="100" step="1" />
-  <button type="button" data-create>Create</button>
-  <button type="button" data-destroy>Destroy</button>
-</div>
-
-<div id="boxes"></div>
-Создай функцию createBoxes(amount), которая принимает один параметр - число. Функция создает столько <div>, сколько указано в amount и добавляет их в div#boxes.
-
-Размеры самого первого <div> - 30px на 30px.
-Каждый элемент после первого, должен быть шире и выше предыдущего на 10px.
-Все элементы должены иметь случайный цвет фона в формате HEX. Используй готовую функцию getRandomHexColor для получения цвета.
-function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
-Создай функцию destroyBoxes(), которая очищает содержимое div#boxes, тем самым удаляя все созданные элементы. */
+
+//Блок переменных
+const firstSize = 30;
+const inc = 10;
+const input = document.querySelector("input");
+const divTarget = document.querySelector("#boxes");
+const buttonCreate = document.querySelector("button[data-create]");
+const buttonDestroy = document.querySelector("button[data-destroy]");
+
+//Functions
+const createBoxes = function (amount) {
+  let divSize = firstSize;
+  for (let i = 0; i < amount; i++) {
+    const divEl = document.createElement("div");
+    divEl.style.width = `${divSize}px`;
+    divEl.style.height = `${divSize}px`;
+    divEl.style.background = getRandomHexColor();
+    divTarget.append(divEl);
+    divSize += inc;
+  }
+};
+const destroyBoxes = function () {
+  divTarget.innerHTML = '<div id="boxes"></div>';
+};
+
+//Основной код
+buttonCreate.addEventListener("click", () => {
+  createBoxes(input.value);
+});
+buttonDestroy.addEventListener("click", () => {
+  destroyBoxes();
+});
