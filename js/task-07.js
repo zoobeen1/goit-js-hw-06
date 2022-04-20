@@ -7,7 +7,8 @@
 <span id="text">Abracadabra!</span> */
 const input = document.querySelector("#font-size-control");
 const text = document.querySelector("#text");
+text.style.fontSize = `${input.value}px`;
 
 input.addEventListener("input", () => {
-  text.innerHTML = `<span id='text' style='font-size:${input.value}px'>Abracadabra!</span>`;
+  text.style.fontSize = `${input.value}px`;
 });

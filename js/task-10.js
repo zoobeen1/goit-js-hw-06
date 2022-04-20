@@ -5,7 +5,7 @@ function getRandomHexColor() {
 }
 
 //Блок переменных
-const firstSize = 30;
+let firstSize = 30;
 const inc = 10;
 const input = document.querySelector("input");
 const divTarget = document.querySelector("#boxes");
@@ -14,18 +14,18 @@ const buttonDestroy = document.querySelector("button[data-destroy]");
 
 //Functions
 const createBoxes = function (amount) {
-  let divSize = firstSize;
   for (let i = 0; i < amount; i++) {
     const divEl = document.createElement("div");
-    divEl.style.width = `${divSize}px`;
-    divEl.style.height = `${divSize}px`;
+    divEl.style.width = `${firstSize}px`;
+    divEl.style.height = `${firstSize}px`;
     divEl.style.background = getRandomHexColor();
     divTarget.append(divEl);
-    divSize += inc;
+    firstSize += inc;
   }
 };
 const destroyBoxes = function () {
   divTarget.innerHTML = '<div id="boxes"></div>';
+  firstSize = 30;
 };
 
 //Основной код

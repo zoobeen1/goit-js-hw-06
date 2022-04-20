@@ -7,11 +7,15 @@ const ingredients = [
   "Condiments",
 ];
 
-const Target = document.querySelector("ul#ingredients");
+const target = document.querySelector("#ingredients");
 
-ingredients.forEach((item) => {
+//Формируем массив элементов для добавления в DOM
+const elements = ingredients.map((item) => {
   let elem = document.createElement("li");
   elem.textContent = item;
   elem.classList.add("item");
-  Target.append(elem);
+  return elem;
 });
+
+//Добавляем все элементы в DOM за одну операцию
+target.append(...elements);
