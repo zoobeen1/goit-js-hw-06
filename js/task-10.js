@@ -24,7 +24,7 @@ const createBoxes = function (amount) {
   }
 };
 const destroyBoxes = function () {
-  divTarget.innerHTML = '<div id="boxes"></div>';
+  divTarget.innerHTML = "";
   firstSize = 30;
 };
 
